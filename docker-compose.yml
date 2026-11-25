@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  mlflow-server:
+    image: python:3.10-slim
+    container_name: mlflow_tracking_server
+    working_dir: /mlflow
+    volumes:
+      - ./mlruns:/mlflow/mlruns
+    ports:
+      - "5000:5000"
+    command: >
+      bash -c "pip install --no-cache-dir mlflow==2.11.0 &&
+               mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri file:///mlflow/mlruns --default-artifact-root file:///mlflow/mlruns"
+
+  experiment:
+    build: .
+    container_name: mot_experiment_runner
+    depends_on:
+      - mlflow-server
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-server:5000
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./data:/app/data
+    command: >
+      bash -c "sleep 15 && python train.py"

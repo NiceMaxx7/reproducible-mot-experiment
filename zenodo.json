@@ -1,0 +1,23 @@
+{
+  "title": "Reproducible Research Artifact Bundle: MOT & Classification Benchmark",
+  "description": "Повний відтворюваний науковий артефактний пакет обчислювального експерименту, що містить версіонований через DVC датасет, ізольоване середовище Docker Compose, трекінг метрик MLflow та документацію.",
+  "creators": [
+    {
+      "name": "Максимчук, Максим Олегович",
+      "affiliation": "Хмельницький національний університет",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "reproducibility",
+    "machine learning",
+    "docker",
+    "docker-compose",
+    "mlflow",
+    "dvc",
+    "fair-data",
+    "open-science"
+  ]
+}
